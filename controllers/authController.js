@@ -32,7 +32,7 @@ exports.login = (req, res) => {
 
     const token = jwt.sign(
       { id: user.id, role: user.role },
-      SECRET,
+      process.env.JWT_SECRET,
       { expiresIn: '1h' }
     )
 

@@ -19,8 +19,7 @@ Content-Type: application/json
   "password": "adminpass"
 }
 
-@admin_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUxODc1OTM3LCJleHAiOjE3NTE4Nzk1Mzd9.FOrBiHsSvRESp_qb7WNLr7ae2FtoS7KqT5_SFZy2dls
-
+@admin_token = {{admin_token}}
 ### ✅ Register customer
 POST http://localhost:3000/auth/register
 Content-Type: application/json
@@ -39,9 +38,7 @@ Content-Type: application/json
   "username": "user786",
   "password": "pass786"
 }
-
-@customer_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzUxODc2NDgxLCJleHAiOjE3NTE4ODAwODF9._hKBSiXEEBMVUldy956jOyztIP1MsyIXr2X-uTfNUGM
-
+@customer_token = {{customer_token}}
 
 ### ✅ Get all products
 GET http://localhost:3000/products
