@@ -1,0 +1,110 @@
+### ✅ Register as admin
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "username": "admin1",
+  "password": "adminpass",
+  "role": "admin"
+}
+
+###
+
+### 🔐 Login as admin
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin1",
+  "password": "adminpass"
+}
+
+@admin_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUxODc1OTM3LCJleHAiOjE3NTE4Nzk1Mzd9.FOrBiHsSvRESp_qb7WNLr7ae2FtoS7KqT5_SFZy2dls
+
+### ✅ Register customer
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "username": "user786",
+  "password": "pass786",
+  "role": "customer"
+}
+
+### 🔐 Login customer
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "user786",
+  "password": "pass786"
+}
+
+@customer_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzUxODc2NDgxLCJleHAiOjE3NTE4ODAwODF9._hKBSiXEEBMVUldy956jOyztIP1MsyIXr2X-uTfNUGM
+
+
+### ✅ Get all products
+GET http://localhost:3000/products
+
+### 🔐 Create product
+POST http://localhost:3000/products
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "name": "Smart Watch",
+  "description": "Touch screen watch",
+  "price": 1999,
+  "category": "electronics"
+}
+
+### 🛠 Update product
+PUT http://localhost:3000/products/1
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "name": "Smart Watch Pro",
+  "description": "Updated touch screen",
+  "price": 2499,
+  "category": "electronics"
+}
+
+### ❌ Delete product
+DELETE http://localhost:3000/products/1
+Authorization: Bearer {{admin_token}}
+
+# -------------------- CART --------------------
+
+### 🛒 View cart
+GET http://localhost:3000/cart
+Authorization: Bearer {{customer_token}}
+
+### ➕ Add to cart
+POST http://localhost:3000/cart
+Content-Type: application/json
+Authorization: Bearer {{customer_token}}
+
+{
+  "product_id": 1,
+  "quantity": 2
+}
+
+### ❌ Remove from cart
+DELETE http://localhost:3000/cart
+Content-Type: application/json
+Authorization: Bearer {{customer_token}}
+
+{
+  "product_id": 1
+}
+
+# -------------------- ORDERS --------------------
+
+### ✅ Place an order from cart
+POST http://localhost:3000/orders
+Authorization: Bearer {{customer_token}}
+
+### 📦 View orders
+GET http://localhost:3000/orders
+Authorization: Bearer {{customer_token}}
